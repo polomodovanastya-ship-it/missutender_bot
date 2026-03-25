@@ -1,0 +1,11 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+config.yaml
+tenderbot.db
+*.log
+.env
+.idea/
+.vscode/
