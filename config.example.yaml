@@ -3,10 +3,25 @@
 # Токен бота от @BotFather
 telegram_bot_token: "YOUR_BOT_TOKEN"
 
-# Ежедневный отчёт: время отправки (часовой пояс — ниже)
-daily_report_time: "10:00"
-# Часовой пояс для времени отчёта (Europe/Moscow, UTC и т.д.)
-timezone: "Europe/Moscow"
+# Если нет прямого доступа к api.telegram.org (VPN/блокировка), укажите прокси:
+# socks5://127.0.0.1:1080
+# http://user:pass@host:8080
+telegram_proxy: null
+
+# Fallback через headless browser (Playwright) для антибот-страниц
+browser_fallback_enabled: true
+browser_headless: true
+# Параллельность загрузки карточек тендеров (чем выше, тем быстрее, но больше нагрузка)
+detail_fetch_concurrency: 6
+
+# Интервал отчёта в часах (плюс один отчёт ~через 5 с после старта бота)
+report_interval_hours: 1
+# Глубина анализа по дате публикации (последние N дней)
+analysis_days: 7
+
+# Ежедневно в фиксированное время — сейчас отключено (см. закомментированный блок в bot.py)
+# daily_report_time: "10:00"
+# timezone: "Europe/Moscow"
 
 # Ключевые слова для фильтрации (хотя бы одно должно совпасть)
 keywords:
@@ -16,6 +31,10 @@ keywords:
   - "разработка"
   - "ИТ"
   - "информационные технологии"
+  - "AI"
+  - "ИИ агенты"
+  - "искусственный интеллект"
+  - "искусственный интелект"
 
 # Тег, при наличии которого тендер считается релевантным
 relevant_tag: "ПО (программное обеспечение)"
@@ -28,4 +47,5 @@ max_crawl_pages: 80
 
 # Дополнительные источники (страницы, ссылающиеся на площадку или дублирующие тендеры)
 # Добавьте сюда RSS, страницы партнёров и т.д.
-extra_sources: []
+extra_sources:
+  - "https://utp.sberbank-ast.ru/VIP/List/PurchaseList"

@@ -14,6 +14,7 @@
    python3 -m venv venv
    source venv/bin/activate   # Windows: venv\Scripts\activate
    pip install -r requirements.txt
+   playwright install chromium
    ```
 
 3. Создайте бота в Telegram через [@BotFather](https://t.me/BotFather), получите токен.
@@ -32,7 +33,20 @@
 python bot.py
 ```
 
-Бот будет опрашивать площадку по расписанию и рассылать новые тендеры только подписанным пользователям.
+Бот будет опрашивать площадку по расписанию и рассылать отчёт только подписанным пользователям.
+
+### Ошибка «Cannot connect to host api.telegram.org»
+
+Обычно это блокировка сети, отключённый VPN или «битые» переменные `HTTP_PROXY` / `HTTPS_PROXY`. Проверьте в браузере или `curl https://api.telegram.org`.
+
+Если прямой доступ к API закрыт, включите VPN **или** пропишите в `config.yaml` параметр `telegram_proxy` (например `socks5://127.0.0.1:1080` при локальном туннеле) и установите зависимости заново (`pip install -r requirements.txt`).
+
+### Антибот-защита площадок
+
+Для `b2b-fix-price` и `sberbank-ast` включён fallback через headless browser (Playwright), если обычный HTTP получает антибот-страницу или пустую JS-оболочку.
+Управление через `config.yaml`:
+- `browser_fallback_enabled: true|false`
+- `browser_headless: true|false`
 
 ## Команды бота
 
